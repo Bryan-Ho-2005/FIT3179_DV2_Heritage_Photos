@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 750,
+  "height": 320,
+  "title": {
+    "text": "19th vs 20th Century Archival Volume Comparison",
+    "subtitle": "Connected dot plot displaying photographic growth between historical eras",
+    "font": "Georgia",
+    "fontSize": 18,
+    "subtitleFont": "Georgia",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c4f3d",
+    "color": "#2c1d11",
+    "anchor": "start"
+  },
+  "background": "#faf7f2",
+  "data": {
+    "url": "../data/melbourne_landmarks_historical.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.Decade < '1900s' ? '19th Century (1850–1899)' : '20th Century (1900–1950)'",
+      "as": "Century"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "Photo_Count"
+        }
+      ],
+      "groupby": ["Category", "Century"]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "stroke": "#8c7b6b",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "Photo_Count",
+          "type": "quantitative",
+          "title": "Number of Historical Photographs"
+        },
+        "y": {
+          "field": "Category",
+          "type": "nominal",
+          "title": "Landmark Category"
+        },
+        "detail": {
+          "field": "Category"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 120,
+        "opacity": 1,
+        "stroke": "#2c1d11",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "x": {
+          "field": "Photo_Count",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Category",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "Century",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "19th Century (1850–1899)",
+              "20th Century (1900–1950)"
+            ],
+            "range": ["#8c2d19", "#2b5c8f"]
+          },
+          "title": "Historical Era"
+        },
+        "tooltip": [
+          {
+            "field": "Category",
+            "type": "nominal",
+            "title": "Category"
+          },
+          {
+            "field": "Century",
+            "type": "nominal",
+            "title": "Era"
+          },
+          {
+            "field": "Photo_Count",
+            "type": "quantitative",
+            "title": "Photos Held"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "font": "Georgia",
+    "legend": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "fillColor": "#f4ede2",
+      "padding": 10,
+      "cornerRadius": 4,
+      "strokeColor": "#d1c4b0"
+    },
+    "axis": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "gridColor": "#e8e0d1",
+      "domainColor": "#d1c4b0",
+      "tickColor": "#d1c4b0"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

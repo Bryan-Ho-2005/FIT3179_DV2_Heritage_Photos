@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 750,
+  "height": 320,
+  "title": {
+    "text": "Decadal Intensity Heatmap Across Landmark Categories",
+    "subtitle": "Temporal concentration of archival holdings (1850s–1950s)",
+    "font": "Georgia",
+    "fontSize": 18,
+    "subtitleFont": "Georgia",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c4f3d",
+    "color": "#2c1d11",
+    "anchor": "start"
+  },
+  "background": "#faf7f2",
+  "data": {
+    "url": "../data/melbourne_landmarks_historical.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Decade != null && datum.Category != null"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "stroke": "#faf7f2",
+    "strokeWidth": 1.5
+  },
+  "encoding": {
+    "x": {
+      "field": "Decade",
+      "type": "ordinal",
+      "title": "Decade",
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "Category",
+      "type": "nominal",
+      "title": "Landmark Category"
+    },
+    "color": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Photos Held",
+      "scale": {
+        "scheme": "oranges"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Category",
+        "type": "nominal",
+        "title": "Category"
+      },
+      {
+        "field": "Decade",
+        "type": "nominal",
+        "title": "Decade"
+      },
+      {
+        "aggregate": "count",
+        "type": "quantitative",
+        "title": "Photos Held"
+      }
+    ]
+  },
+  "config": {
+    "font": "Georgia",
+    "legend": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "fillColor": "#f4ede2",
+      "padding": 10,
+      "cornerRadius": 4,
+      "strokeColor": "#d1c4b0"
+    },
+    "axis": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "gridColor": "#e8e0d1",
+      "domainColor": "#d1c4b0",
+      "tickColor": "#d1c4b0"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

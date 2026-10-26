@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 750,
+  "height": 320,
+  "title": {
+    "text": "Gold Rush Era to Post-Federation Shift in Collection Focus",
+    "subtitle": "Slope chart showing relative trends between major developmental periods",
+    "font": "Georgia",
+    "fontSize": 18,
+    "subtitleFont": "Georgia",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c4f3d",
+    "color": "#2c1d11",
+    "anchor": "start"
+  },
+  "background": "#faf7f2",
+  "data": {
+    "url": "../data/melbourne_landmarks_historical.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.Decade <= '1890s' ? 'Gold Rush Era (1850–1890s)' : 'Post-Federation (1900–1950s)'",
+      "as": "Era"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "Count"
+        }
+      ],
+      "groupby": ["Category", "Era"]
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "point": {
+      "size": 80,
+      "filled": true
+    },
+    "strokeWidth": 2.5
+  },
+  "encoding": {
+    "x": {
+      "field": "Era",
+      "type": "ordinal",
+      "title": "Historical Era",
+      "scale": {
+        "padding": 0.5
+      }
+    },
+    "y": {
+      "field": "Count",
+      "type": "quantitative",
+      "title": "Photographs Recorded"
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "scale": {
+        "scheme": "dark2"
+      },
+      "title": "Category"
+    },
+    "tooltip": [
+      {
+        "field": "Category",
+        "type": "nominal",
+        "title": "Category"
+      },
+      {
+        "field": "Era",
+        "type": "nominal",
+        "title": "Era"
+      },
+      {
+        "field": "Count",
+        "type": "quantitative",
+        "title": "Photos Held"
+      }
+    ]
+  },
+  "config": {
+    "font": "Georgia",
+    "legend": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "fillColor": "#f4ede2",
+      "padding": 10,
+      "cornerRadius": 4,
+      "strokeColor": "#d1c4b0"
+    },
+    "axis": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "gridColor": "#e8e0d1",
+      "domainColor": "#d1c4b0",
+      "tickColor": "#d1c4b0"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

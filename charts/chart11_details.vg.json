@@ -1,0 +1,80 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 750,
+  "height": 320,
+  "title": {
+    "text": "Archival Photograph Details-on-Demand Explorer",
+    "subtitle": "Interactive matrix displaying archival metadata and description links",
+    "font": "Georgia",
+    "fontSize": 18,
+    "subtitleFont": "Georgia",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c4f3d",
+    "color": "#2c1d11",
+    "anchor": "start"
+  },
+  "background": "#faf7f2",
+  "data": {
+    "url": "../data/melbourne_landmarks_historical.csv"
+  },
+  "mark": {
+    "type": "point",
+    "filled": true,
+    "size": 110,
+    "stroke": "#2c1d11",
+    "strokeWidth": 0.8
+  },
+  "encoding": {
+    "x": {
+      "field": "Decade",
+      "type": "ordinal",
+      "title": "Decade"
+    },
+    "y": {
+      "field": "Landmark_Name",
+      "type": "nominal",
+      "title": "Landmark"
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "scale": {
+        "scheme": "dark2"
+      },
+      "title": "Category"
+    },
+    "tooltip": [
+      { "field": "Landmark_Name", "type": "nominal", "title": "Landmark" },
+      { "field": "Location", "type": "nominal", "title": "Subunit / Location" },
+      { "field": "Decade", "type": "nominal", "title": "Decade" },
+      { "field": "Category", "type": "nominal", "title": "Category" },
+      { "field": "Description", "type": "nominal", "title": "Historical Context" },
+      { "field": "Image_URL", "type": "nominal", "title": "Archival File Link" }
+    ]
+  },
+  "config": {
+    "font": "Georgia",
+    "legend": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "fillColor": "#f4ede2",
+      "padding": 10,
+      "cornerRadius": 4,
+      "strokeColor": "#d1c4b0"
+    },
+    "axis": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "gridColor": "#e8e0d1",
+      "domainColor": "#d1c4b0",
+      "tickColor": "#d1c4b0"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

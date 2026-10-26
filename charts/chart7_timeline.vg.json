@@ -1,0 +1,117 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 750,
+  "height": 350,
+  "title": {
+    "text": "Interactive Landmark Timeline with Category Selection",
+    "subtitle": "Select a landmark category to isolate individual photo records",
+    "font": "Georgia",
+    "fontSize": 18,
+    "subtitleFont": "Georgia",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c4f3d",
+    "color": "#2c1d11",
+    "anchor": "start"
+  },
+  "background": "#faf7f2",
+  "params": [
+    {
+      "name": "Category_Select",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Civic and Government",
+          "Commercial and Retail",
+          "Cultural and Heritage",
+          "Hospitality and Hotels",
+          "Religious and Sacred",
+          "Transport and Infra"
+        ],
+        "labels": [
+          "Show All Categories",
+          "Civic and Government",
+          "Commercial and Retail",
+          "Cultural and Heritage",
+          "Hospitality and Hotels",
+          "Religious and Sacred",
+          "Transport and Infra"
+        ],
+        "name": "Filter Category: "
+      }
+    }
+  ],
+  "data": {
+    "url": "../data/melbourne_landmarks_historical.csv"
+  },
+  "transform": [
+    {
+      "filter": "Category_Select == null || datum.Category == Category_Select"
+    }
+  ],
+  "mark": {
+    "type": "circle",
+    "opacity": 0.8,
+    "size": 90,
+    "stroke": "#3e2723",
+    "strokeWidth": 0.6
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "title": "Year Recorded",
+      "scale": {
+        "domainMin": 1850,
+        "domainMax": 1960
+      },
+      "axis": {
+        "format": "d"
+      }
+    },
+    "y": {
+      "field": "Landmark_Name",
+      "type": "nominal",
+      "title": "Landmark"
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "scale": {
+        "scheme": "dark2"
+      },
+      "title": "Category"
+    },
+    "tooltip": [
+      { "field": "Landmark_Name", "type": "nominal", "title": "Landmark" },
+      { "field": "Year", "type": "quantitative", "title": "Year" },
+      { "field": "Category", "type": "nominal", "title": "Category" },
+      { "field": "Description", "type": "nominal", "title": "Description" }
+    ]
+  },
+  "config": {
+    "font": "Georgia",
+    "legend": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "fillColor": "#f4ede2",
+      "padding": 10,
+      "cornerRadius": 4,
+      "strokeColor": "#d1c4b0"
+    },
+    "axis": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "gridColor": "#e8e0d1",
+      "domainColor": "#d1c4b0",
+      "tickColor": "#d1c4b0"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

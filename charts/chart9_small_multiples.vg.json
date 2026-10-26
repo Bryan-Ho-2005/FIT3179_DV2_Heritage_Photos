@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 160,
+  "height": 220,
+  "title": {
+    "text": "Small Multiples: Photographic Distribution Across Sample Eras",
+    "subtitle": "Side-by-side comparison across 1860s, 1890s, 1920s, and 1950s",
+    "font": "Georgia",
+    "fontSize": 18,
+    "subtitleFont": "Georgia",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c4f3d",
+    "color": "#2c1d11",
+    "anchor": "start"
+  },
+  "background": "#faf7f2",
+  "data": {
+    "url": "../data/melbourne_landmarks_historical.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Decade == '1860s' || datum.Decade == '1890s' || datum.Decade == '1920s' || datum.Decade == '1950s'"
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 3
+  },
+  "encoding": {
+    "column": {
+      "field": "Decade",
+      "type": "nominal",
+      "title": "Sample Era"
+    },
+    "x": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Photos"
+    },
+    "y": {
+      "field": "Category",
+      "type": "nominal",
+      "title": "Category"
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "scale": {
+        "scheme": "dark2"
+      },
+      "legend": null
+    },
+    "tooltip": [
+      { "field": "Category", "type": "nominal", "title": "Category" },
+      { "field": "Decade", "type": "nominal", "title": "Decade" },
+      { "aggregate": "count", "type": "quantitative", "title": "Photos" }
+    ]
+  },
+  "config": {
+    "font": "Georgia",
+    "legend": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "fillColor": "#f4ede2",
+      "padding": 10,
+      "cornerRadius": 4,
+      "strokeColor": "#d1c4b0"
+    },
+    "axis": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "gridColor": "#e8e0d1",
+      "domainColor": "#d1c4b0",
+      "tickColor": "#d1c4b0"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

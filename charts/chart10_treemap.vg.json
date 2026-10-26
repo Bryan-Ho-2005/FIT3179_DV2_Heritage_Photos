@@ -1,0 +1,86 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 750,
+  "height": 320,
+  "title": {
+    "text": "Preservation Volume Hierarchy by Individual Landmark",
+    "subtitle": "Ranked historical photo volume per landmark entity",
+    "font": "Georgia",
+    "fontSize": 18,
+    "subtitleFont": "Georgia",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c4f3d",
+    "color": "#2c1d11",
+    "anchor": "start"
+  },
+  "background": "#faf7f2",
+  "data": {
+    "url": "../data/melbourne_landmarks_historical.csv"
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "Photo_Count"
+        }
+      ],
+      "groupby": ["Landmark_Name", "Category"]
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 4
+  },
+  "encoding": {
+    "x": {
+      "field": "Photo_Count",
+      "type": "quantitative",
+      "title": "Total Photos Held"
+    },
+    "y": {
+      "field": "Landmark_Name",
+      "type": "nominal",
+      "title": "Landmark",
+      "sort": "-x"
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "scale": {
+        "scheme": "dark2"
+      },
+      "title": "Category"
+    },
+    "tooltip": [
+      { "field": "Landmark_Name", "type": "nominal", "title": "Landmark" },
+      { "field": "Category", "type": "nominal", "title": "Category" },
+      { "field": "Photo_Count", "type": "quantitative", "title": "Total Photos" }
+    ]
+  },
+  "config": {
+    "font": "Georgia",
+    "legend": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "fillColor": "#f4ede2",
+      "padding": 10,
+      "cornerRadius": 4,
+      "strokeColor": "#d1c4b0"
+    },
+    "axis": {
+      "titleFont": "Georgia",
+      "labelFont": "Georgia",
+      "titleColor": "#2c1d11",
+      "labelColor": "#4a3b2c",
+      "gridColor": "#e8e0d1",
+      "domainColor": "#d1c4b0",
+      "tickColor": "#d1c4b0"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

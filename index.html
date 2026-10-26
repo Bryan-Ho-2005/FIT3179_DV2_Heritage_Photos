@@ -4,100 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Victorian Heritage: A Century of Photography</title>
-  
-  <!-- Google Fonts matching CSS styling -->
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  
-  <!-- Link to your CSS file -->
-  <link rel="stylesheet" href="style.css">
-  
-  <!-- Vega & Vega-Lite Libraries (for FIT3179 Data Visualisation) -->
+
+  <!-- Typography & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Root CSS Link -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Vega Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
 <body>
 
-  <!-- Header Section -->
   <header>
     <h1>Victorian Heritage: A Century of Photography</h1>
-    <p class="description">
+    <p>
       Exploring changing regional landscapes, social hubs, and community growth across Victoria
       from 1850 to 1950 through historical photographic archives held by the State Library of Victoria.
     </p>
   </header>
 
-  <main>
-    <!-- Map Section -->
-    <div class="chart-card">
+  <main class="dashboard-grid">
+
+    <section class="chart-card">
       <h2>Geographic Overview of Documented Establishments</h2>
-      <p class="description">
+      <p>
         Proportional symbol distribution showing photograph locations and collection volumes across Victoria.
       </p>
-      <div id="map"></div>
-    </div>
+      <div id="vis1" class="vis-container"></div>
+    </section>
 
-    <!-- Section 1 -->
-    <div class="chart-card">
+    <section class="chart-card">
       <h2>Locality Density (Choropleth)</h2>
-      <div id="vis1"></div>
-    </div>
+      <div id="vis2" class="vis-container"></div>
+    </section>
 
-    <div class="chart-card">
+    <section class="chart-card">
       <h2>Regional Coverage Grid</h2>
-      <div id="vis2"></div>
-    </div>
+      <div id="vis3" class="vis-container"></div>
+    </section>
 
-    <!-- Section 2 -->
-    <div class="chart-card">
+    <section class="chart-card">
       <h2>Decadal Photographic Intensity</h2>
-      <div id="vis3"></div>
-    </div>
+      <div id="vis4" class="vis-container"></div>
+    </section>
 
-    <div class="chart-card">
+    <section class="chart-card">
       <h2>19th vs 20th Century Growth</h2>
-      <div id="vis4"></div>
-    </div>
+      <div id="vis5" class="vis-container"></div>
+    </section>
 
-    <!-- Section 3 -->
-    <div class="chart-card">
+    <section class="chart-card">
       <h2>Gold Rush to Federation Shifts</h2>
-      <div id="vis5"></div>
-    </div>
+      <div id="vis6" class="vis-container"></div>
+    </section>
 
-    <div class="chart-card">
+    <section class="chart-card">
       <h2>Collection Timeline &amp; Geographic Spread</h2>
-      <div id="vis6"></div>
-    </div>
+      <div id="vis7" class="vis-container"></div>
+    </section>
 
-    <!-- Section 4 -->
-    <div class="chart-card">
+    <section class="chart-card">
       <h2>Archival Volume Streamgraph (1850–1950)</h2>
-      <div id="vis7"></div>
-    </div>
+      <div id="vis8" class="vis-container"></div>
+    </section>
 
-    <!-- Section 5 -->
-    <div class="chart-card">
+    <section class="chart-card">
       <h2>Regional Small Multiples Across Eras</h2>
-      <div id="vis8"></div>
-    </div>
+      <div id="vis9" class="vis-container"></div>
+    </section>
 
-    <div class="chart-card">
+    <section class="chart-card">
       <h2>Preservation Hierarchy (Treemap)</h2>
-      <div id="vis9"></div>
-    </div>
+      <div id="vis10" class="vis-container"></div>
+    </section>
 
-    <!-- Details-on-Demand -->
-    <div class="chart-card">
+    <section class="chart-card">
       <h2>Archival Photograph Details-on-Demand</h2>
-      <div id="vis10"></div>
-    </div>
+      <div id="vis11" class="vis-container"></div>
+    </section>
+
   </main>
 
-  <!-- Footer Section -->
-  <footer class="footer">
+  <footer>
     Data Sources: State Library of Victoria (SLV) &amp; Australian Bureau of Statistics (ABS). FIT3179 Data Visualisation 2.
   </footer>
+
+  <!-- Corrected JS Script Path -->
+  <script src="js/vega_lite_vis.js"></script>
 
 </body>
 </html>
